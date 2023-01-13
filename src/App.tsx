@@ -5,9 +5,10 @@ import Card from './components/Card';
 import Header from './components/Header';
 import { GlobalStyles } from './styles/GlobalStyles';
 
+
 function App() {
-  const [lightMode, setLightMode] = useState(true);
-  const [user, setUser] = useState('');
+  const [lightMode, setLightMode] = useState<any>(false);
+  const [user, setUser] = useState<string>('');
   const [configs, setConfigs] = useState([]);
 
   useEffect(() => {
@@ -23,7 +24,8 @@ function App() {
 
   
   return (
-    <Main lightMode={lightMode}>
+    <ThemeProvider theme={{ lightMode: lightMode }}>
+      <Main>
       <GlobalStyles />
       <Helmet>
         <link
@@ -48,6 +50,7 @@ function App() {
         setConfigs={setConfigs}
       />
     </Main>
+    </ThemeProvider>
   );
 }
 
@@ -56,9 +59,10 @@ export default App;
 
 
 const Main = styled.body`
-  background: ${(props) => (props.lightMode ? '#F6F8FF' : '#141d2f')};
-  color: ${(props) => (props.lightMode ? '#4B6A9B' : 'white')};
-  @media (min-width:1024px) {
+  background: ${(props) =>
+    props.theme.lightMode ? '#F6F8FF' : '#141d2f'};
+  color: ${(props) => (props.theme.lightMode ? '#4B6A9B' : 'white')};
+  @media (min-width: 1024px) {
     display: flex;
     align-items: center;
     justify-content: center;

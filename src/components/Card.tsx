@@ -6,48 +6,48 @@ import twitter from '../assets/icon-twitter.svg';
 import website from '../assets/icon-website.svg';
 function Card(props: any) {
   return (
-    <Container lightMode={props.lightMode}>
+    <Container theme={{ lightMode: props.lightMode }}>
       <div style={{ display: 'flex' }}>
         <Avatar src={props.configs.avatar_url}></Avatar>
         <div>
-          <Heading lightMode={props.lightMode}>
+          <Heading theme={{ lightMode: props.lightMode }}>
             {props.configs.name}
           </Heading>
           <Username>@{props.configs.login}</Username>
-          <JoinInfo lightMode={props.lightMode}>
+          <JoinInfo theme={{ lightMode: props.lightMode }}>
             {' '}
             Joined - {props.configs.created_at}
           </JoinInfo>
         </div>
       </div>
-      <Bio lightMode={props.lightMode}>
+      <Bio theme={{ lightMode: props.lightMode }}>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Done
         c odio. Quisque volutpat mattis eros.
       </Bio>
-      <CardInfo lightMode={props.lightMode}>
+      <CardInfo theme={{ lightMode: props.lightMode }}>
         <div>
-          <HeadingInfos lightMode={props.lightMode}>
+          <HeadingInfos theme={{ lightMode: props.lightMode }}>
             Repos{' '}
           </HeadingInfos>
-          <Values lightMode={props.lightMode}>
+          <Values theme={{ lightMode: props.lightMode }}>
             {props.configs.public_repos}
           </Values>
         </div>
         <div>
-          <HeadingInfos lightMode={props.lightMode}>
+          <HeadingInfos theme={{ lightMode: props.lightMode }}>
             {' '}
             Follower{' '}
           </HeadingInfos>
-          <Values lightMode={props.lightMode}>
+          <Values theme={{ lightMode: props.lightMode }}>
             {props.configs.followers}
           </Values>
         </div>
         <div>
-          <HeadingInfos lightMode={props.lightMode}>
+          <HeadingInfos theme={{ lightMode: props.lightMode }}>
             {' '}
             Followong
           </HeadingInfos>
-          <Values lightMode={props.lightMode}>
+          <Values theme={{ lightMode: props.lightMode }}>
             {props.configs.following}
           </Values>
         </div>
@@ -87,10 +87,10 @@ export default Card;
 const Container = styled.div`
   width: 90vw;
   height: 517px;
-  background: ${(props) => (props.lightMode ? '#FEFEFE' : '#1e2a47')};
-  color: ${(props) => (props.lightMode ? '#4B6A9B' : '#F6F8FF')};
+  background: ${(props) => (props.theme.lightMode ? '#FEFEFE' : '#1e2a47')};
+  color: ${(props) => (props.theme.lightMode ? '#4B6A9B' : '#F6F8FF')};
   box-shadow: ${(props) =>
-    props.lightMode
+    props.theme.lightMode
       ? '0px 16px 30px -10px rgba(70, 96, 187, 0.198567)'
       : ''};
   margin-top: 24px;
@@ -131,7 +131,7 @@ const Heading = styled.h2`
   font-size: 16px;
   margin-top: 34px;
   margin-left: 17px;
-  color: ${(props) => (props.lightMode ? '#2B3442' : '#F6F8FF')};
+  color: ${(props) => (props.theme.lightMode ? '#2B3442' : '#F6F8FF')};
   @media (min-width: 678px) {
     font-size: 26px;
     margin-left: 44px;
@@ -165,7 +165,7 @@ const JoinInfo = styled.p`
   height: 22px;
   font-size: 11px;
   opacity: 60%;
-  color: ${(props) => (props.lightMode ? '#2B3442' : '#F6F8FF')};
+  color: ${(props) => (props.theme.lightMode ? '#2B3442' : '#F6F8FF')};
   @media (min-width: 678px) {
     font-size: 16px;
     margin-left: 44px;
@@ -180,7 +180,7 @@ const JoinInfo = styled.p`
 const Bio = styled.p`
   width: 80vw;
   height: 75px;
-  color: ${(props) => (props.lightMode ? '#4B6A9B' : '#F6F8FF')};
+  color: ${(props) => (props.theme.lightMode ? '#4B6A9B' : '#F6F8FF')};
   font-size: 13px;
   margin: 24px;
   margin-top: 35px;
@@ -194,9 +194,9 @@ const Bio = styled.p`
 `;
 
 const CardInfo = styled.div`
-  background: ${(props) => (props.lightMode ? '#F6F8FF' : '#141D2F')};
+  background: ${(props) => (props.theme.lightMode ? '#F6F8FF' : '#141D2F')};
   box-shadow: ${(props) =>
-    props.lightMode
+    props.theme.lightMode
       ? '0px 16px 30px -10px rgba(70, 96, 187, 0.198567)'
       : ''};
   width: 80vw;
@@ -223,7 +223,7 @@ const CardInfo = styled.div`
 const HeadingInfos = styled.p`
   display: flex;
   justify-content: center;
-  color: ${(props) => (props.lightMode ? '#4B6A9B' : '#F6F8FF')};
+  color: ${(props) => (props.theme.lightMode ? '#4B6A9B' : '#F6F8FF')};
   font-size: 12px;
   margin-top: 12px;
 `;
@@ -231,7 +231,7 @@ const HeadingInfos = styled.p`
 const Values = styled.p`
   display: flex;
   justify-content: space-around;
-  color: ${(props) => (props.lightMode ? '#2B3442' : '#F6F8FF')};
+  color: ${(props) => (props.theme.lightMode ? '#2B3442' : '#F6F8FF')};
   font-size: 22px;
   margin-top: 2px;
 `;
@@ -263,8 +263,6 @@ const SVG = styled.img`
 `;
 
 const Place = styled.p`
-  font-family: var(--space-mono);
-  font-weight: 400;
   font-size: 15px;
   width: 120px;
   @media (min-width: 678px) {

@@ -28,20 +28,22 @@ function Header(props: any) {
   return (
     <Container>
       <div style={{ display: 'flex' }}>
-        <Heading lightMode={props.lightMode}>devfinder</Heading>
-        <LightMode onClick={handleClick}>
+        <Heading theme={{ lightMode: props.lightMode }}>
+          devfinder
+        </Heading>
+        <ThemeContainer onClick={handleClick}>
           {props.lightMode ? 'DARK' : 'LIGHT'}
           <Img src={props.lightMode ? moon : sun} alt="sun"></Img>
-        </LightMode>
+        </ThemeContainer>
       </div>
 
-      <div lightMode={props.lightMode}>
-        <Form lightMode={props.lightMode}>
+      <div>
+        <Form theme={{ lightMode: props.lightMode }}>
           <SearchImage src={search}></SearchImage>
           <Input
             type="text"
             placeholder="Search GitHub username…"
-            lightMode={props.lightMode}
+            theme={{ lightMode: props.lightMode }}
             onChange={(e) => props.setUser(e.target.value)}
           />
           <Button onClick={fetchData}>Search</Button>
@@ -69,10 +71,10 @@ const Container = styled.div`
 const Heading = styled.h1`
   font-size: 26px;
   line-height: 40px;
-  color: ${(props) => (props.lightMode ? '#222731' : '#F6F8FF')};
+  color: ${(props) => (props.theme.lightMode ? '#222731' : '#F6F8FF')};
 `;
 
-const LightMode = styled.div`
+const ThemeContainer = styled.div`
   letter-spacing: 2.5px;
   display: flex;
   align-items: center;
@@ -92,12 +94,12 @@ const Form = styled.div`
   height: 60px;
   border-radius: 15px;
   box-shadow: ${(props) =>
-    props.lightMode
+    props.theme.lightMode
       ? '0px 16px 30px -10px rgba(70, 96, 187, 0.198567)'
       : ''};
   display: flex;
   margin-top: 32px;
-  background: ${(props) => (props.lightMode ? '#F6F8FF' : '#1e2a47')};
+  background: ${(props) => (props.theme.lightMode ? '#F6F8FF' : '#1e2a47')};
   @media (min-width: 678px) {
     width: 80vw;
     height: 69px;
@@ -118,8 +120,8 @@ const SearchImage = styled.img`
 `;
 
 const Input = styled.input`
-  background: ${(props) => (props.lightMode ? '#F6F8FF' : '#1e2a47')};
-  color: ${(props) => (props.lightMode ? '#4B6A9B' : '#F6F8FF')};
+  background: ${(props) => (props.theme.lightMode ? '#F6F8FF' : '#1e2a47')};
+  color: ${(props) => (props.theme.lightMode ? '#4B6A9B' : '#F6F8FF')};
   width: 224px;
   height: 24px;
   align-self: center;
@@ -129,7 +131,7 @@ const Input = styled.input`
   margin-left: 24px;
   letter-spacing: 1.1px;
   ::placeholder {
-    color: ${(props) => (props.lightMode ? '#4B6A9B' : '#F6F8FF')};
+    color: ${(props) => (props.theme.lightMode ? '#4B6A9B' : '#F6F8FF')};
     letter-spacing: 1.1px;
   }
   @media (min-width: 678px) {
